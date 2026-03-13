@@ -1,4 +1,6 @@
 import Typewriter from "./Typewriter";
+import NodeChain from './NodeChain'
+
 
 export default function Hero() {
     return (
@@ -11,7 +13,9 @@ export default function Hero() {
 
                 <p className="text-muted text-lg max-w-md">Learn the code. Understand the history. Question the design.</p>
             </div>
-            <div className="flex-1"></div>
+            <div className="flex-1 flex items-center justify-center">
+                <NodeChain />
+            </div>
         </section>
     )
 }
