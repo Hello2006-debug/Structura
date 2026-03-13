@@ -1,0 +1,45 @@
+/* Tailwind v4 — replaces the old "@tailwind base/components/utilities" syntax */
+@import "tailwindcss";
+
+/*
+  @theme is how Tailwind v4 lets you define custom design tokens.
+  Any --color-* variable you define here becomes a usable Tailwind class:
+    --color-primary  →  bg-primary, text-primary, border-primary
+    --color-card     →  bg-card, etc.
+  Any --font-* variable becomes:
+    --font-mono      →  font-mono
+*/
+@theme {
+  /* Background layers */
+  --color-background: #0D0D0D;
+  --color-card: #242424;
+  --color-panel: #1E1E1E;
+  --color-border-custom: #2A2A2A;
+
+  /* Brand colors */
+  --color-primary: #00F5A0;
+  --color-secondary: #6C63FF;
+
+  /* Text */
+  --color-muted: #666666;
+
+  /* Accent */
+  --color-yellow: #FFC857;
+  --color-red-accent: #FF4C4C;
+
+  /*
+    Fonts — these reference CSS variables that layout.js will inject
+    onto the <html> element using Next.js's font system.
+    The fallbacks (monospace, sans-serif) are used if the font hasn't
+    loaded yet.
+  */
+  --font-mono: var(--font-jetbrains), monospace;
+  --font-sans: var(--font-inter), sans-serif;
+}
+
+/* Global base styles */
+body {
+  background-color: #0D0D0D;
+  color: #E8E8E8;
+  font-family: var(--font-inter), sans-serif;
+}
