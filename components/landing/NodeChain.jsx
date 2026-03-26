@@ -15,7 +15,7 @@ export default function NodeChain(){
                 delay: stagger(250), // each element starts 250ms after the previous
                 loop: true,
                 alternate: true,     // after reaching 1, animate back to 0.3
-                ease: 'feaseInOutSine'
+                ease: 'InOutSine'
             })
         }
     }, []);
