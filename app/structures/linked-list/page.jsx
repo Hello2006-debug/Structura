@@ -1,6 +1,28 @@
+'use client';
+import React, {useState} from 'react';
 import NodeCircle from './NodeCircle'
 import Arrow from './Arrow'
+import  CodePanel from './CodePanel'
+import { set } from 'animejs';
 export default function LinkedListPage() {
+    const [nodes , setNodes] = useState([]);
+    const [inputValue, setInputValue] = useState("");
+    const [activeOperation, setActiveOperation] = useState("insert");
+    function insertAtHead() {
+        if (inputValue.trim() === "") return;
+        const newNode = {
+            id: Date.now(),
+            value: inputValue
+        }
+        setNodes([newNode, ...nodes]);
+        setInputValue("");
+        setActiveOperation("insert")
+    }
+    function deleteNode(){
+        if (nodes.length === 0) return;
+        setNodes(nodes.slice(1));
+        setActiveOperation("delete")
+    }
     return (
     <main className="flex flex-row h-screen overflow-hidden">
         <div className="w-[50%] overflow-y-auto h-full border-r border-[#00A86B] p-6" style={{backgroundColor:'#1E1E1E'}}>
@@ -30,16 +52,33 @@ export default function LinkedListPage() {
             </div>
         </div>
         <div className="w-[50%] flex flex-col h-full">
-            <div className="h-[55%] p-6 flex gap-4 items-center " style={{backgroundColor:'#242424'}}>
-                <NodeCircle value="12" isHead={true} />
-                <Arrow />
-                <NodeCircle value="99" />
-                <Arrow />
-                <NodeCircle value="37" />
-                <Arrow />
-                <span className="text-muted font-mono text-sm">null</span>
+            <div className="h-[55%] p-6 flex flex-col" style={{backgroundColor:'#242424'}}>
+                <div className="flex flex-1  items-center gap-4 overflow-x-auto flex-1">
+                    {nodes.map((node,index) => (
+                    <React.Fragment key={node.id} >
+                        <NodeCircle value={node.value} isHead={index === 0}/>
+                        {index < nodes.length - 1 && <Arrow /> }
+                    </React.Fragment>
+                ))}
+                {nodes.length > 0 && <><Arrow /><span className="font-mono text-muted text-sm">null</span></>}
+                </div>
+                <div className="flex gap-3 items-center pt-4">
+                    <input
+                    type="text"
+                    value={inputValue}
+                    onChange={(e) => setInputValue(e.target.value)}
+                    placeholder="Enter a value..."
+                    className="bg-[#242424] text-white placeholder:text-gray-500 border border-[#2A2A2A] focus:outline-none focus:ring-2 focus:ring-[#00F5A0] font-mono px-3 py-2 rounded text-sm"
+                />
+                <button onClick={insertAtHead} className="px-4 py-2 rounded font-mono text-sm bg-[#00F5A0] text-black"
+>Insert</button>
+                <button onClick={deleteNode} className="px-4 py-2 rounded font-mono text-sm border border-[#FF4C4C] text-[#FF4C4C]"
+>Delete</button>
+                </div>
             </div>
-            <div className="h-[45%] border-t border-[#00A86B] p-6" style={{backgroundColor:'#0D0D0D'}}>Code</div>
+            <div className="h-[45%] border-t border-[#00A86B] p-6" style={{backgroundColor:'#0D0D0D'}}>
+                <CodePanel activeOperation={activeOperation}/>
+            </div>
         </div>
 </main>
     )
