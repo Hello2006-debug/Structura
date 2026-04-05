@@ -1,4 +1,6 @@
-export default function CodePanel({activeOperation}){
+'use client';
+import React  from 'react';
+export default function CodePanel({activeOperation,activeLine,stepDescription}) {
     const insertCode = [
     "function insertAtHead(value) {",
     "  const node = new Node(value)",
@@ -16,11 +18,20 @@ export default function CodePanel({activeOperation}){
     "  size--",
     "  return removed",
     "}"
-]
-    const code = activeOperation === "insert" ? insertCode.join("\n") : deleteCode.join("\n");
+    ]
+    const currentCode = activeOperation === "insert" ? insertCode : deleteCode;
+
     return (
         <div className="bg-[#1E1E1E] text-white p-4 rounded-md overflow-x-auto font-mono text-sm">
-            <pre>{code}</pre>
+            <p className="text-primary font-mono text-xs mb-3">{stepDescription}</p>
+            <pre>
+                {currentCode.map((line, index) => (
+                    <div key={index} className={index === activeLine ? "bg-[#00F5A0] text-black" : ""}>
+                        {line}
+                        </div>
+                        ))
+                }
+            </pre>
         </div>
     )
 }
