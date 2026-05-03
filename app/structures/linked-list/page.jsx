@@ -4,6 +4,7 @@ import NodeCircle from './NodeCircle'
 import Arrow from './Arrow'
 import  CodePanel from './CodePanel'
 import Navbar from '@/components/Navbar';
+import ConfettiBlast from '@/components/ConfettiBlast';
 import {animate} from 'animejs'
 import Link from 'next/link'
 export default function LinkedListPage() {
@@ -86,13 +87,13 @@ setHasDeleted(true)
     }
 
     return (
-        <div className='h-screen flex flex-col overflow-hidden'>
+        <div className='min-h-screen md:h-screen flex flex-col md:overflow-hidden'>
         <Navbar />
-    <main className="flex flex-row flex-1  overflow-hidden">
-    <div className="w-[50%] overflow-y-auto h-full border-r border-[#00A86B] p-4" style={{backgroundColor:'#1E1E1E'}}>
+    <main className="flex flex-col md:flex-row flex-1 md:overflow-hidden">
+    <div className="w-full h-[40vh] md:w-[50%] md:h-full overflow-y-auto border-b md:border-b-0 md:border-r border-[#00A86B] p-4" style={{backgroundColor:'#1E1E1E'}}>
     <div className="border-l border-[#00F5A0] px-4">
         <h2 className="font-mono font-bold text-xl leading-tight mb-3 text-primary">The Chain Of Nodes</h2>
-        <p className="text-white text-sm">A linked list is a sequence of nodes where each node holds a value and a pointer to the next node. Unlike an array, nodes are not stored next to each other in memory — they are connected only by their pointers.</p>
+        <p className="text-white text-sm">Imagine a treasure hunt where each clue tells you something useful and points you to the location of the next clue. A linked list works the same way. Each item in the list — called a node — stores two things: a piece of data (whatever value you want to hold) and an address called a pointer, which tells the computer where the next node lives in memory. The items are not stored side by side like rows in a spreadsheet. They are scattered through memory, connected only by those forward addresses. To reach any item, you start at the first node and follow the chain one step at a time — there is no other way in.</p>
     </div>
     <div className="border-l border-[#00F5A0] px-4">
         <h2 className="font-mono font-bold text-xl leading-tight my-3 text-primary">RAND Corporation, 1956</h2>
@@ -136,8 +137,8 @@ setHasDeleted(true)
         </ol>
     </div>
 </div>
-        <div className="w-[50%] flex flex-col h-full">
-            <div className="h-[55%] p-6 flex flex-col" style={{backgroundColor:'#242424'}}>
+        <div className="w-full flex flex-col md:w-[50%] md:h-full">
+            <div className="h-[40vh] md:h-[55%] p-4 md:p-6 flex flex-col" style={{backgroundColor:'#242424'}}>
                 {!sandboxActive ? (
                     <p className="text-muted font-mon text-sm">Scroll through the story to begin</p>
                 ): (
@@ -167,7 +168,7 @@ setHasDeleted(true)
                 </>
                 )}
             </div>
-            <div className="h-[45%] border-t border-[#00A86B] p-6" style={{backgroundColor:'#0D0D0D'}}>
+            <div className="h-[35vh] md:h-[45%] border-t border-[#00A86B] p-4 md:p-6 overflow-hidden" style={{backgroundColor:'#0D0D0D'}}>
                 {! codePanelActive ? (
                     <p className="text-muted font-mon text-sm">Insert a node to see the algorithms codes</p>
                 ): (
@@ -210,6 +211,7 @@ setHasDeleted(true)
         </Link>
     </div>
 </footer>
+        <ConfettiBlast triggered={hasInserted && hasDeleted} />
         </div>
     )
 }

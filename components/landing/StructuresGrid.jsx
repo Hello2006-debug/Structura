@@ -14,9 +14,9 @@ function StructureCard({number, title, description, href}) {
 }
 export default function StructureGrid() {
     return (
-        <div className="bg-background p-16">
-            <h2 className="font-mono text-3xl font-bold text-center text-primary mb-8">Explore Structures</h2>
-            <div className="grid grid-cols-3 gap-6">
+        <div className="bg-background p-6 lg:p-16">
+            <h2 className="font-mono text-2xl lg:text-3xl font-bold text-center text-primary mb-8">Explore Structures</h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                 <StructureCard number="01" title="Linked List" description="The chain of nodes, each pointing to the next" href="/structures/linked-list" />
                 <StructureCard number="02" title="Binary Tree" description="A hierarchical structure with nodes having at most two children" href="/structures/tree" />
                 <StructureCard number="03" title="Graph" description="A collection of nodes connected by edges, representing relationships" href="/structures/graph" />
