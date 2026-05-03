@@ -20,7 +20,7 @@ scroll-driven storytelling, live animation, and a critical historical lens.
 - 05 Graph
 
 ## Course
-DIG 345: Radical Software — Davidson College — 2025
+DIG 345: Radical Software — Davidson College — 2026
 
 ## Author
 Melissa Mugengano — memugengano@davidson.edu
